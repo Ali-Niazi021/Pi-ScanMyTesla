@@ -5,7 +5,7 @@ Based on [ESP32-ScanMyTesla](https://github.com/Adminius/ESP32-ScanMyTesla) by E
 
 ## Hardware
 - Raspberry Pi (tested on Pi 4/5)
-- SocketCAN compatible CAN interface (e.g. Waveshare 2-CH CAN HAT, MCP2515)
+- SocketCAN compatible CAN interface (e.g. Waveshare 2-CH CAN HAT, MCP2515) connected to VCAN
 - USB Bluetooth adapter recommended (onboard works but USB has better range)
 - Does NOT work with iOS. Apple doesn't support Bluetooth Serial.
 
