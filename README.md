@@ -1,7 +1,7 @@
 # Pi-ScanMyTesla
 CAN to Bluetooth Adapter for [ScanMyTesla](https://sites.google.com/view/scanmytesla/home) on Raspberry Pi
 
-Based on [ESP32-ScanMyTesla](https://github.com/Adminius/ESP32-ScanMyTesla) by E.Burkowski
+Based on [ESP32-ScanMyTesla](https://github.com/Adminius/ESP32-ScanMyTesla) by Adminius
 
 ## Hardware
 - Raspberry Pi (tested on Pi 4/5)
