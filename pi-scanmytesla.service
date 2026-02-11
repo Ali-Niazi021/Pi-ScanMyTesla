@@ -8,7 +8,7 @@ Type=simple
 User=root
 WorkingDirectory=/home/name/Dev/Pi-ScanMyTesla
 
-# Bring up CAN1 interface at 500kbps
+# Bring up CAN0 interface at 500kbps
 ExecStartPre=/bin/sh -c '/sbin/ip link set can0 down 2>/dev/null || true'
 ExecStartPre=/sbin/ip link set can0 type can bitrate 500000
 ExecStartPre=/sbin/ip link set can0 txqueuelen 1000
