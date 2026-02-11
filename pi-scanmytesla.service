@@ -1,0 +1,29 @@
+[Unit]
+Description=Pi ScanMyTesla Bluetooth CAN Bridge
+After=bluetooth.target network.target
+Wants=bluetooth.target
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/home/name/Dev/Pi-ScanMyTesla
+
+# Bring up CAN1 interface at 500kbps
+ExecStartPre=/bin/sh -c '/sbin/ip link set can0 down 2>/dev/null || true'
+ExecStartPre=/sbin/ip link set can0 type can bitrate 500000
+ExecStartPre=/sbin/ip link set can0 txqueuelen 1000
+ExecStartPre=/sbin/ip link set can0 up
+
+# Start the ScanMyTesla bridge
+ExecStart=/home/name/Dev/Pi-ScanMyTesla/venv/bin/python3 /home/name/Dev/Pi-ScanMyTesla/pi_scanmytesla.py --can-interface can0 --bt-name Pi-SMT --bt-device hci1 --debug
+
+# Cleanup on stop
+ExecStopPost=/sbin/ip link set can0 down
+
+Restart=on-failure
+RestartSec=5
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target
