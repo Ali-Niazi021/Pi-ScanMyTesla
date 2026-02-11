@@ -1,14 +1,28 @@
-# ESP32-ScanMyTesla
-CAN to BlueTooth Adapter for [ScanMyTesla](https://sites.google.com/view/scanmytesla/home) on ESP32
+# Pi-ScanMyTesla
+CAN to Bluetooth Adapter for [ScanMyTesla](https://sites.google.com/view/scanmytesla/home) on Raspberry Pi
 
+Based on [ESP32-ScanMyTesla](https://github.com/Adminius/ESP32-ScanMyTesla) by E.Burkowski
 
 ## Hardware
-- Any ESP32 based board. (e.g. Wemos D1 mini ESP32), doesn't work with ESP32-C*, -S*, -H* series, only with ESP32
-- Any DC-DC Step Down to 5V, because most ESP32 boards can't handle car voltages (~16V). (e.g. DC Power Shield for WEMOS D1 mini)
-- SN65HVD230 CAN bus transceiver **without termination resistor**
-- Tested with [Arduino ESP32 Core](https://github.com/espressif/arduino-esp32) v3.0.4
-- Does NOT work with iOS. Apple doesn't Bluetooth Serial.
+- Raspberry Pi (tested on Pi 4/5)
+- SocketCAN compatible CAN interface (e.g. Waveshare 2-CH CAN HAT, MCP2515)
+- USB Bluetooth adapter recommended (onboard works but USB has better range)
+- Does NOT work with iOS. Apple doesn't support Bluetooth Serial.
 
-## Connection
+## Installation
 
-![Connection diagram](ESP32_can_connection.png "Connection diagram")
+```bash
+./setup.sh
+sudo systemctl enable pi-scanmytesla
+sudo systemctl start pi-scanmytesla
+```
+
+## Usage
+
+```bash
+# Default (can0, hci0)
+python3 pi_scanmytesla.py
+
+# Custom CAN interface and Bluetooth adapter
+python3 pi_scanmytesla.py --can-interface can0 --bt-device hci1 --bt-name Pi-SMT
+```
